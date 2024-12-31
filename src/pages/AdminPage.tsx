@@ -125,7 +125,7 @@ export function AdminPage() {
                 </div>
               )}
               
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-xl p-8">
+              <div className="backdrop-blur-sm rounded-xl  p-8">
                 {(step === 'admin' || isEditingQuiz) ? (
                   <div className="flex justify-center">
                     <AdminForm 

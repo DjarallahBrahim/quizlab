@@ -14,69 +14,82 @@ export function QuestionPreview({ questions, onDelete }: QuestionPreviewProps) {
     setExpandedQuestion(expandedQuestion === id ? null : id);
   };
 
+  if (questions.length === 0) {
+    return (
+      <div className="text-center py-8 bg-gray-50 rounded-lg">
+        <p className="text-gray-500">No questions added yet</p>
+        <p className="text-sm text-gray-400 mt-1">Questions will appear here as you add them</p>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h3 className="text-lg font-medium text-gray-900 mb-4">Preview</h3>
-      <div className="space-y-3">
-        {questions.map((question, index) => (
-          <div key={question.id} className="bg-white rounded-lg shadow">
-            <div className="p-4">
-              <div className="flex justify-between items-start">
-                <button
-                  onClick={() => toggleQuestion(question.id)}
-                  className="flex-1 flex items-center text-left"
-                >
-                  <div>
-                    <div className="flex items-center">
-                      <h4 className="font-medium">Question {index + 1}</h4>
-                      <span className="ml-2 px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-600">
-                        {question.type === 'single' ? 'Single Answer' : 'Multiple Answers'}
+    <div className="space-y-4">
+      {questions.map((question, index) => (
+        <div 
+          key={question.id} 
+          className="bg-gray-50 rounded-lg transition-all duration-200 hover:bg-gray-100"
+        >
+          <div className="p-4">
+            <div className="flex justify-between items-start">
+              <button
+                onClick={() => toggleQuestion(question.id)}
+                className="flex-1 flex items-center text-left"
+              >
+                <div className="flex-1">
+                  <div className="flex items-center">
+                    <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-indigo-100 text-indigo-800 text-sm font-medium mr-2">
+                      {index + 1}
+                    </span>
+                    <span className="px-2.5 py-0.5 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800">
+                      {question.type === 'single' ? 'Single Answer' : 'Multiple Answers'}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-gray-900">{question.text}</p>
+                </div>
+                {expandedQuestion === question.id ? (
+                  <ChevronUp className="ml-2 w-5 h-5 text-gray-400" />
+                ) : (
+                  <ChevronDown className="ml-2 w-5 h-5 text-gray-400" />
+                )}
+              </button>
+              <button
+                onClick={() => onDelete(question.id)}
+                className="ml-4 p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors duration-200"
+                title="Delete question"
+              >
+                <Trash2 size={18} />
+              </button>
+            </div>
+
+            {expandedQuestion === question.id && (
+              <div className="mt-4 pl-8 border-l-2 border-indigo-100">
+                <div className="space-y-2">
+                  {question.options.map((option, optIndex) => (
+                    <div
+                      key={optIndex}
+                      className="flex items-center p-2 rounded-md bg-white"
+                    >
+                      {question.correctAnswers.includes(optIndex) ? (
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
+                      ) : (
+                        <XCircle className="w-4 h-4 text-gray-300 mr-2 flex-shrink-0" />
+                      )}
+                      <span className={
+                        question.correctAnswers.includes(optIndex)
+                          ? 'text-green-700 font-medium'
+                          : 'text-gray-600'
+                      }>
+                        {option}
                       </span>
                     </div>
-                    <p className="mt-1 text-gray-600 line-clamp-1">{question.text}</p>
-                  </div>
-                  {expandedQuestion === question.id ? (
-                    <ChevronUp className="ml-2 w-5 h-5 text-gray-400" />
-                  ) : (
-                    <ChevronDown className="ml-2 w-5 h-5 text-gray-400" />
-                  )}
-                </button>
-                <button
-                  onClick={() => onDelete(question.id)}
-                  className="ml-4 text-red-600 hover:text-red-800"
-                >
-                  <Trash2 size={20} />
-                </button>
-              </div>
-
-              {expandedQuestion === question.id && (
-                <div className="mt-4 pl-4 border-l-2 border-gray-100">
-                  <div className="space-y-2">
-                    {question.options.map((option, optIndex) => (
-                      <div
-                        key={optIndex}
-                        className="flex items-center space-x-2"
-                      >
-                        {question.correctAnswers.includes(optIndex) ? (
-                          <CheckCircle className="w-4 h-4 text-green-500" />
-                        ) : (
-                          <XCircle className="w-4 h-4 text-gray-300" />
-                        )}
-                        <span className={question.correctAnswers.includes(optIndex) 
-                          ? 'text-green-600' 
-                          : 'text-gray-600'
-                        }>
-                          {option}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

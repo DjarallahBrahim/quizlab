@@ -10,15 +10,20 @@ export function HomePage() {
   return (
     <div className={layout.gradient + " min-h-screen py-12 px-4"}>
       <div className={layout.container}>
-        <h1 className="text-4xl font-bold text-center text-gray-900 mb-12">
-          Welcome to Quiz Lab
-        </h1>
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 mb-4">
+            Welcome to Quiz Lab
+          </h1>
+          <p className="text-xl text-gray-600">
+            Create, share, and take quizzes with your team
+          </p>
+        </div>
         
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           <RoleCard
-            icon={<Users className="w-12 h-12 text-indigo-600" />}
+            icon={<Users className="w-full h-full text-indigo-600" />}
             title="Team Member"
-            description="Take quizzes created by your team admin and track your progress"
+            description="Take quizzes and track your learning progress"
             features={[
               "Join quizzes using a code",
               "View your quiz results",
@@ -30,9 +35,9 @@ export function HomePage() {
           />
 
           <RoleCard
-            icon={<UserCog className="w-12 h-12 text-indigo-600" />}
+            icon={<UserCog className="w-full h-full text-indigo-600" />}
             title="Team Admin"
-            description="Create and manage quizzes for your team members"
+            description="Create and manage quizzes for your team"
             features={[
               "Create custom quizzes",
               "Monitor team performance",
