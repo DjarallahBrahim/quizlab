@@ -68,7 +68,7 @@ export function AIAssistant({ onClose, isVisible, onQuestionsGenerated }: AIAssi
                 onChange={(e) => setTopic(e.target.value)}
                 className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 rows={4}
-                placeholder="e.g., Create a quiz about JavaScript Promises with 5 questions"
+                placeholder="e.g., Create a quiz about heart disease with 5 questions"
                 disabled={isLoading}
               />
             </div>
