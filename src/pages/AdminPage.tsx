@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminForm } from '../components/AdminForm';
-import { QuizCreator } from '../components/QuizCreator';
+import { QuizCreator } from '../components/QuizCreator/index';
 import { QuizResultsAdmin } from '../components/AdminResults/QuizResultsAdmin';
 import { Quiz, Question } from '../types/quiz';
 import { saveQuiz } from '../services/quizService';
