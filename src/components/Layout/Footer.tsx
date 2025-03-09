@@ -8,13 +8,13 @@ export function Footer() {
   return (
     <footer className="bg-white/80 backdrop-blur-sm shadow-lg mt-auto">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center space-y-6">
           <div className="flex items-center space-x-2 text-indigo-600">
             <BrainCircuit className="w-6 h-6" />
             <span className="text-lg font-bold">Quiz Lab</span>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
+          <nav className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-gray-600">
             <Link to="/how-to-use" className="hover:text-indigo-600 transition-colors">
               How to Use
             </Link>
@@ -26,11 +26,11 @@ export function Footer() {
             </Link>
           </nav>
 
-          <div className="flex items-center text-sm text-gray-600">
+          <div className="flex items-center text-sm text-gray-600 text-center">
             Made with <Heart className="w-4 h-4 mx-1 text-red-500" /> by DJARALLAH Azeddin
           </div>
 
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 text-center">
             © {currentYear} Quiz Lab. All rights reserved.
           </div>
         </div>

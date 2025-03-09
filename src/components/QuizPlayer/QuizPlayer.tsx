@@ -4,6 +4,7 @@ import { QuestionView } from './QuestionView';
 import { QuizResults } from './QuizResults';
 import { QuizData } from '../../types/quiz';
 import { saveQuizAnswers } from '../../services/quizAnswerService';
+import { ProgressBar } from './ProgressBar';
 
 export function QuizPlayer() {
   const [quizData, setQuizData] = useState<QuizData | null>(null);
@@ -112,10 +113,13 @@ export function QuizPlayer() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <div className="flex justify-between items-center mb-8">
+          <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900">{quizData.name}</h2>
-            <div className="text-sm text-gray-500">
-              Question {currentQuestionIndex + 1} of {quizData.questions.length}
+            <div className="mt-4">
+              <ProgressBar 
+                current={currentQuestionIndex + 1} 
+                total={quizData.questions.length} 
+              />
             </div>
           </div>
 
